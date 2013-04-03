@@ -1,5 +1,5 @@
 --[[------------------------------------------------------
-	OPie_Masque
+	OPie Masque
 	Adds Masque skinning support to OPie.
 	Written by Phanx <addons@phanx.net>
 	See the accompanying README file for more information.
@@ -64,8 +64,8 @@ function prototype:SetBindingText(text)
 end
 
 function prototype:SetCooldown(remain, duration, usable)
-	if duration and duration > 0 and remain and remain > 0 then
-		local start = GetTime() + duration - remain
+	if duration and remain and duration > 0 and remain > 0 then
+		local start = GetTime() + remain - duration
 		self.cooldown:SetCooldown(start, duration)
 		self.cooldown:Show()
 	else
