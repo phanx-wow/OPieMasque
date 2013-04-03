@@ -1,0 +1,19 @@
+## Interface: 50200
+## Version: 5.2.0.wowi:revision
+
+## Title: OPie Masque
+## Notes: Adds Masque skinning support to OPie.
+## Notes-esES: Capacita a Masque para cambiar la apariencia de OPie.
+## Notes-esMX: Capacita a Masque para cambiar la apariencia de OPie.
+
+## Author: Phanx
+## X-Email: addons@phanx.net
+## X-License: Public Domain
+## X-CompatibleLocales: deDE, enUS, esES, esMX, frFR, itIT, ptBR, koKR, ruRU, zhCN, zhTW
+## X-Website: http://www.wowinterface.com/downloads/info22218-OPieMasque.html
+## X-Curse-Project-Name: opie-masque
+## X-WoWI-ID: 22218
+
+## Dependencies: Masque, OPie
+
+Addon.lua
