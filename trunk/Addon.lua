@@ -3,7 +3,7 @@
 	Adds Masque skinning support to OPie.
 	Written by Phanx <addons@phanx.net>
 	See the accompanying README file for more information.
-	http://www.wowinterface.com/downloads/info22218-OPieMasque.html
+	http://www.wowinterface.com/downloads/info22226-OPieMasque.html
 	http://www.curse.com/addons/wow/opie-masque/
 ----------------------------------------------------------------------]]
 

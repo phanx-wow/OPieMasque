@@ -10,9 +10,9 @@
 ## X-Email: addons@phanx.net
 ## X-License: Public Domain
 ## X-CompatibleLocales: deDE, enUS, esES, esMX, frFR, itIT, ptBR, koKR, ruRU, zhCN, zhTW
-## X-Website: http://www.wowinterface.com/downloads/info22218-OPieMasque.html
+## X-Website: http://www.wowinterface.com/downloads/info22226-OPieMasque.html
 ## X-Curse-Project-Name: opie-masque
-## X-WoWI-ID: 22218
+## X-WoWI-ID: 22226
 
 ## Dependencies: Masque, OPie
 
