@@ -2,7 +2,7 @@ OPie Masque
 ===========
 
 * Written by Phanx <addons@phanx.net>
-* http://www.wowinterface.com/downloads/info22218-OPieMasque.html
+* http://www.wowinterface.com/downloads/info22226-OPieMasque.html
 * http://www.curse.com/addons/wow/opie-masque
 
 
