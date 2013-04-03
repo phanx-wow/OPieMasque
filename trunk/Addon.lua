@@ -28,6 +28,7 @@ function prototype:SetIconTexCoord(...)
 end
 
 function prototype:SetIconVertexColor(r, g, b)
+	if r == 0.5 and g == 0.5 and b == 0.5 then return end -- don't let OPie darken icons on cooldown
 	self.icon:SetVertexColor(r, g, b)
 end
 
