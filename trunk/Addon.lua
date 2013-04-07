@@ -23,17 +23,18 @@ function prototype:SetIcon(texture)
 	self.icon:SetTexture(texture)
 end
 
-function prototype:SetIconTexCoord(...)
-	self.icon:SetTexCoord(...)
+function prototype:SetIconTexCoord(a, b, c, d, e, f, g, h)
+	if not a or not b or not c or not d then return end -- Broker plugins???
+	self.icon:SetTexCoord(a, b, c, d, e, f, g, h)
 end
 
 function prototype:SetIconVertexColor(r, g, b)
-	if r == 0.5 and g == 0.5 and b == 0.5 then return end -- don't let OPie darken icons on cooldown
+	if r == 0.5 and g == 0.5 and b == 0.5 then return end -- Don't let OPie darken icons on cooldown.
 	self.icon:SetVertexColor(r, g, b)
 end
 
 function prototype:SetDominantColor(r, g, b)
-	self.border:SetShown(floor(r + 0.5) ~= 1 or floor(g + 0.5) ~= 1 or floor(b + 0.5) ~= 1) -- don't override skin color if it's white
+	self.border:SetShown(floor(r + 0.5) ~= 1 or floor(g + 0.5) ~= 1 or floor(b + 0.5) ~= 1) -- Don't override skin color if it's white.
 	self.border:SetVertexColor(r, g, b)
 	for i = 1, #self.glowTextures do
 		self.glowTextures[i]:SetVertexColor(r, g, b)
@@ -75,7 +76,7 @@ function prototype:SetCooldown(remain, duration, usable)
 end
 
 function prototype:SetCooldownFormattedText(pattern, ...)
-	-- Do nothing, let OmniCC handle it
+	-- Do nothing, let OmniCC handle it.
 end
 
 function prototype:SetHighlighted(highlight)

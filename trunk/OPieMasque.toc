@@ -3,8 +3,11 @@
 
 ## Title: OPie Masque
 ## Notes: Adds Masque skinning support to OPie.
-## Notes-esES: Capacita a Masque para cambiar la apariencia de OPie.
-## Notes-esMX: Capacita a Masque para cambiar la apariencia de OPie.
+## Notes-esES: Capacita a Masque a cambiar la apariencia de OPie.
+## Notes-esMX: Capacita a Masque a cambiar la apariencia de OPie.
+## Notes-frFR: Accorde à Masque à modifier l'apparence du OPie.
+## Notes-ptBR: Capacita a Masque a alterar a aparência de Opie.
+## Notes-ptPT: Capacita a Masque a alterar a aparência de Opie.
 
 ## Author: Phanx
 ## X-Email: addons@phanx.net
