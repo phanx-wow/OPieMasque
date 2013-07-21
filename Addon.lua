@@ -16,8 +16,9 @@ assert(Masque, "Masque not found")
 
 local id
 local group
-local buttons = {} _G.obuttons=buttons
+local buttons = {}
 local prototype = {}
+local STATE_USABLE, STATE_NOMANA, STATE_NORANGE, STATE_UNUSABLE = 0, 1, 2, 3
 
 function prototype:SetIcon(texture)
 	self.icon:SetTexture(texture)
@@ -30,7 +31,25 @@ end
 
 function prototype:SetIconVertexColor(r, g, b)
 	if r == 0.5 and g == 0.5 and b == 0.5 then return end -- Don't let OPie darken icons on cooldown.
-	self.icon:SetVertexColor(r, g, b)
+	self.iconr, self.icong, self.iconb = r, g, b
+	if self.ustate == STATE_USABLE then
+		self.icon:SetVertexColor(r, g, b)
+	end
+end
+
+function prototype:SetUsable(usable, usableCharge, cd, nomana, norange)
+	local state = usable and STATE_USABLE or (norange and STATE_NORANGE or (nomana and STATE_NOMANA or STATE_UNUSABLE))
+	if state == self.ustate then return end
+	self.ustate = state
+	if state == STATE_NORANGE then
+		self.icon:SetVertexColor(0.8, 0.1, 0.1)
+	elseif state == STATE_NOMANA then
+		self.icon:SetVertexColor(0.5, 0.5, 1)
+	elseif state == STATE_UNUSABLE then
+		self.icon:SetVertexColor(0.4, 0.4, 0.4)
+	else
+		self.icon:SetVertexColor(self.iconr or 1, self.icong or 1, self.iconb or 1)
+	end
 end
 
 function prototype:SetDominantColor(r, g, b)
@@ -81,7 +100,6 @@ end
 
 function prototype:SetHighlighted(highlight)
 	self[highlight and "LockHighlight" or "UnlockHighlight"](self)
-	self:GetPushedTexture():SetShown(highlight)
 end
 
 function prototype:SetActive(active)
