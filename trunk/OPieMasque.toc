@@ -3,7 +3,7 @@
 
 ## Title: OPie Masque
 ## Notes: Adds Masque skinning support to OPie.
-## Notes-deDE: Ermöglicht Masque, um das Aussehen von Opie ändern.
+## Notes-deDE: Masque ermöglichen, um das Aussehen von Opie zu verändern.
 ## Notes-esES: Capacita a Masque a cambiar la apariencia de OPie.
 ## Notes-esMX: Capacita a Masque a cambiar la apariencia de OPie.
 ## Notes-frFR: Accorde à Masque à modifier l'apparence du OPie.
