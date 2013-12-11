@@ -1,4 +1,4 @@
---[[------------------------------------------------------
+--[[--------------------------------------------------------------------
 	OPie Masque
 	Adds Masque skinning support to OPie.
 	Written by Phanx <addons@phanx.net>
@@ -6,6 +6,10 @@
 	http://www.wowinterface.com/downloads/info22226-OPieMasque.html
 	http://www.curse.com/addons/wow/opie-masque/
 ----------------------------------------------------------------------]]
+
+local SPECIAL_COLOR_ALPHA = 0.75 -- 0 = invisible, 1 = fully visible
+
+------------------------------------------------------------------------
 
 assert(OneRingLib, "OneRingLib not found")
 assert(OneRingLib.ext, "OneRingLib.ext not found")
@@ -55,6 +59,7 @@ end
 function prototype:SetDominantColor(r, g, b)
 	self.border:SetShown(floor(r + 0.5) ~= 1 or floor(g + 0.5) ~= 1 or floor(b + 0.5) ~= 1) -- Don't override skin color if it's white.
 	self.border:SetVertexColor(r, g, b)
+	self.border:SetAlpha(SPECIAL_COLOR_ALPHA)
 	for i = 1, #self.glowTextures do
 		self.glowTextures[i]:SetVertexColor(r, g, b)
 	end
