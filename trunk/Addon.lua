@@ -57,7 +57,7 @@ function prototype:SetUsable(usable, usableCharge, cd, nomana, norange)
 end
 
 function prototype:SetDominantColor(r, g, b)
-	self.border:SetShown(floor(r + 0.5) ~= 1 or floor(g + 0.5) ~= 1 or floor(b + 0.5) ~= 1) -- Don't override skin color if it's white.
+	self.border:SetShown("3" == format("%d", r + g + b + 0.05)) -- Don't override skin color if it's white.
 	self.border:SetVertexColor(r, g, b)
 	self.border:SetAlpha(SPECIAL_COLOR_ALPHA)
 	for i = 1, #self.glowTextures do
@@ -85,8 +85,27 @@ function prototype:SetCount(count)
 	self.count:SetText(count or "")
 end
 
-function prototype:SetBindingText(text)
-	self.hotkey:SetText(text or "")
+local displaySubs = {
+	["ALT%-"]      = "a",
+	["CTRL%-"]     = "c",
+	["SHIFT%-"]    = "s",
+	["BUTTON"]     = "m",
+	["MOUSEWHEEL"] = "w",
+	["NUMPAD"]     = "n",
+	["PLUS"]       = "+",
+	["MINUS"]      = "-",
+	["MULTIPLY"]   = "*",
+	["DIVIDE"]     = "/",
+	["DECIMAL"]    = ".",
+}
+function prototype:SetBinding(text)
+	if not text then
+		return self.hotkey:SetText("")
+	end
+	for k, v in pairs(displaySubs) do
+		text = gsub(text, k, v)
+	end
+	self.hotkey:SetText(text)
 end
 
 function prototype:SetCooldown(remain, duration, usable)
@@ -125,13 +144,13 @@ local function Reskin()
 	end
 end
 
-local id = 1
+local id = 0
 
 local function CreateIndicator(name, parent, size, ghost)
+	id = id + 1
 	name = name or "OPieSliceButton"..id
 	parent = parent or UIParent
 	size = size or 36
-	id = id + 1
 
 	local button = CreateFrame("CheckButton", name, parent, "ActionButtonTemplate")
 	button:SetSize(size, size)
