@@ -57,7 +57,7 @@ function prototype:SetUsable(usable, usableCharge, cd, nomana, norange)
 end
 
 function prototype:SetDominantColor(r, g, b)
-	self.border:SetShown("3" == format("%d", r + g + b + 0.05)) -- Don't override skin color if it's white.
+	self.border:SetShown(2.85 > (r + g + b)) -- Don't override skin color if it's white.
 	self.border:SetVertexColor(r, g, b)
 	self.border:SetAlpha(SPECIAL_COLOR_ALPHA)
 	for i = 1, #self.glowTextures do
