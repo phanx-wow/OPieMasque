@@ -1,7 +1,7 @@
 --[[--------------------------------------------------------------------
 	OPie Masque
 	Adds Masque skinning support to OPie.
-	Copyright 2013-2014 Phanx <addons@phanx.net>
+	Copyright (c) 2013-2014 Phanx. All rights reserved.
 	See the accompanying README and LICENSE files for more information.
 	http://www.wowinterface.com/downloads/info22226-OPieMasque.html
 	http://www.curse.com/addons/wow/opie-masque/
