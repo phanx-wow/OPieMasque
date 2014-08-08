@@ -12,8 +12,8 @@
 
 ## Author: Phanx
 ## X-Email: addons@phanx.net
-## X-Copyright: Copyright 2013-2014 A. "Phanx" Kinley.
-## X-License: Do not redistribute. See accompanying LICENSE file for details.
+## X-Copyright: Copyright (c) 2013-2014 Phanx. All rights reserved.
+## X-License: See the accompanying LICENSE file for details.
 ## X-CompatibleLocales: deDE, enUS, esES, esMX, frFR, itIT, ptBR, koKR, ruRU, zhCN, zhTW
 ## X-Website: http://www.wowinterface.com/downloads/info22226-OPieMasque.html
 ## X-Curse-Project-Name: opie-masque
