@@ -77,7 +77,7 @@ function prototype:SetOverlayIcon(texture, w, h, ...)
 		self.overIcon:SetSize(w, h)
 		if ... then
 			self.overIcon:SetTexCoord(...)
-		end
+end
 	end
 	]]
 end
@@ -120,7 +120,11 @@ function prototype:SetCooldown(remain, duration, usable)
 end
 
 function prototype:SetCooldownFormattedText(pattern, ...)
-	-- Do nothing, let OmniCC handle it.
+	-- do nothing, let OmniCC handle it
+end
+
+function prototype:SetCooldownTextShown()
+	-- do nothing, let OmniCC handle it
 end
 
 function prototype:SetHighlighted(highlight)
@@ -134,6 +138,18 @@ end
 function prototype:SetOuterGlow(shown)
 	for i = 1, #self.glowTextures do
 		self.glowTextures[i]:SetShown(shown)
+	end
+end
+
+function prototype:SetEquipState(inBags, isEquipped)
+	if isEquipped then
+		self.flash:SetVertexColor(0.1, 0.9, 0.15)
+		self.flash:Show()
+	elseif inBags then
+		self.flash:SetVertexColor(1, 0.9, 0.2)
+		self.flash:Show()
+	else
+		self.flash:Hide()
 	end
 end
 
