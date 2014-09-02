@@ -8,13 +8,11 @@
 ----------------------------------------------------------------------]]
 
 local SPECIAL_COLOR_ALPHA = 0.75
--- 0 = invisible, 1 = fully visible
+-- 0 = invisible, 1 = fully visible, lower it if your skin is ugly
 
 ------------------------------------------------------------------------
 
-assert(OneRingLib, "OneRingLib not found")
-assert(OneRingLib.ext, "OneRingLib.ext not found")
-assert(OneRingLib.ext.OPieUI, "OneRingLib.ext.OPieUI not found")
+assert(OneRingLib and OneRingLib.ext and OneRingLib.ext.OPieUI, "OPie not found")
 
 local Masque = LibStub("Masque", true)
 assert(Masque, "Masque not found")
