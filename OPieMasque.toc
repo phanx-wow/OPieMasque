@@ -1,23 +1,18 @@
 ## Interface: 60000
-## Version: 6.0.2.wowi:revision
+## Version: 6.0.2.20
 
 ## Title: OPie Masque
 ## Notes: Adds Masque skinning support to OPie.
-## Notes-deDE: Ermöglicht Masque, um das Aussehen von Opie zu verändern.
+## Notes-deDE: Ermöglicht die Verwendung der Masque-Skins auf Opie.
 ## Notes-esES: Capacita a Masque a cambiar la apariencia de OPie.
 ## Notes-esMX: Capacita a Masque a cambiar la apariencia de OPie.
 ## Notes-frFR: Accorde à Masque à modifier l'apparence du OPie.
 ## Notes-ptBR: Capacita a Masque a alterar a aparência de Opie.
-## Notes-ptPT: Capacita a Masque a alterar a aparência de Opie.
 
 ## Author: Phanx
 ## X-Email: addons@phanx.net
 ## X-Copyright: Copyright (c) 2013-2014 Phanx. All rights reserved.
-## X-License: See the accompanying LICENSE file for details.
-## X-CompatibleLocales: deDE, enUS, esES, esMX, frFR, itIT, ptBR, koKR, ruRU, zhCN, zhTW
-## X-Website: http://www.wowinterface.com/downloads/info22226-OPieMasque.html
-## X-Curse-Project-Name: opie-masque
-## X-WoWI-ID: 22226
+## X-Website: https://github.com/Phanx/OPieMasque
 
 ## Dependencies: Masque, OPie
 
