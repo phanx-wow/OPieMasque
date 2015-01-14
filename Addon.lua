@@ -75,7 +75,7 @@ function prototype:SetOverlayIcon(texture, w, h, ...)
 		self.overIcon:SetSize(w, h)
 		if ... then
 			self.overIcon:SetTexCoord(...)
-end
+		end
 	end
 	]]
 end
@@ -110,6 +110,7 @@ end
 function prototype:SetCooldown(remain, duration, usable)
 	if duration and remain and duration > 0 and remain > 0 then
 		local start = GetTime() + remain - duration
+		self.cooldown:SetSwipeColor(0, 0, 0, 0.8) -- needed with tullaCC
 		self.cooldown:SetCooldown(start, duration)
 		self.cooldown:Show()
 	else
