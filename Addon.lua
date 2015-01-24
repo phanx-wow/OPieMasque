@@ -1,7 +1,7 @@
 --[[--------------------------------------------------------------------
 	OPie Masque
 	Adds Masque skinning support to OPie.
-	Copyright (c) 2013-2014 Phanx. All rights reserved.
+	Copyright (c) 2013-2015 Phanx. All rights reserved.
 	http://www.wowinterface.com/downloads/info22226-OPieMasque.html
 	http://www.curse.com/addons/wow/opie-masque/
 	https://github.com/Phanx/OPieMasque
@@ -48,7 +48,7 @@ function prototype:SetUsable(usable, usableCharge, cd, nomana, norange)
 		self.icon:SetVertexColor(0.8, 0.1, 0.1)
 	elseif state == STATE_NOMANA then
 		self.icon:SetVertexColor(0.5, 0.5, 1)
-	elseif state == STATE_UNUSABLE then
+	elseif state == STATE_UNUSABLE and not cd then -- don't black it out while on cooldown
 		self.icon:SetVertexColor(0.4, 0.4, 0.4)
 	else
 		self.icon:SetVertexColor(self.iconr or 1, self.icong or 1, self.iconb or 1)
@@ -56,7 +56,7 @@ function prototype:SetUsable(usable, usableCharge, cd, nomana, norange)
 end
 
 function prototype:SetDominantColor(r, g, b)
-	self.border:SetShown(2.85 > (r + g + b)) -- Don't override skin color if it's white.
+	self.border:SetShown(2.85 > (r + g + b)) -- don't override skin color if it's white
 	self.border:SetVertexColor(r, g, b)
 	self.border:SetAlpha(SPECIAL_COLOR_ALPHA)
 	for i = 1, #self.glowTextures do
@@ -110,7 +110,17 @@ end
 function prototype:SetCooldown(remain, duration, usable)
 	if duration and remain and duration > 0 and remain > 0 then
 		local start = GetTime() + remain - duration
-		self.cooldown:SetSwipeColor(0, 0, 0, 0.8) -- needed with tullaCC
+		-- TODO: detect and show loss of control ?
+		if usable then
+			-- show recharge time
+			self.cooldown:SetDrawEdge(true)
+			self.cooldown:SetDrawSwipe(false)
+		else
+			-- show cooldown time
+			self.cooldown:SetDrawEdge(false)
+			self.cooldown:SetDrawSwipe(true)
+			self.cooldown:SetSwipeColor(0, 0, 0, 0.8)
+		end
 		self.cooldown:SetCooldown(start, duration)
 		self.cooldown:Show()
 	else
@@ -119,11 +129,11 @@ function prototype:SetCooldown(remain, duration, usable)
 end
 
 function prototype:SetCooldownFormattedText(pattern, ...)
-	-- do nothing, let OmniCC handle it
+	-- do nothing
 end
 
 function prototype:SetCooldownTextShown()
-	-- do nothing, let OmniCC handle it
+	-- do nothing
 end
 
 function prototype:SetHighlighted(highlight)
@@ -201,10 +211,6 @@ local function CreateIndicator(name, parent, size, ghost)
 	--[[ Overlay icon (???)
 	button.overIcon = button:CreateTexture(nil, "ARTWORK", 1)
 	button.overIcon:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 4, 4)]]
-
-	--[[ Cooldown text
-	button.cdText = button:CreateFontString(nil, "OVERLAY", "NumberFontNormalHuge")
-	button.cdText:SetPoint("CENTER")]]
 
 	for k, v in pairs(prototype) do
 		button[k] = v

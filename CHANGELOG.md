@@ -1,3 +1,7 @@
+### Version 6.0.3.9
+
+* Fixed cooldown spinner appearance when not using OmniCC or a similar addon.
+
 ### Version 6.0.2.20
 
 * Updated for WoW 6.0

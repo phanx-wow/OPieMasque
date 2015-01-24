@@ -1,5 +1,5 @@
 ## Interface: 60000
-## Version: 6.0.2.20
+## Version: @project-version@
 
 ## Title: OPie Masque
 ## Notes: Adds Masque skinning support to OPie.
@@ -11,7 +11,7 @@
 
 ## Author: Phanx
 ## X-Email: addons@phanx.net
-## X-Copyright: Copyright (c) 2013-2014 Phanx. All rights reserved.
+## X-Copyright: Copyright (c) 2013-2015 Phanx. All rights reserved.
 ## X-Website: https://github.com/Phanx/OPieMasque
 
 ## Dependencies: Masque, OPie
