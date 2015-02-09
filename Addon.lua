@@ -24,19 +24,19 @@ local prototype = {}
 local STATE_USABLE, STATE_NOMANA, STATE_NORANGE, STATE_UNUSABLE = 0, 1, 2, 3
 
 function prototype:SetIcon(texture)
-	self.icon:SetTexture(texture)
+	self.Icon:SetTexture(texture)
 end
 
 function prototype:SetIconTexCoord(a, b, c, d, e, f, g, h)
 	if not a or not b or not c or not d then return end -- Broker plugins???
-	self.icon:SetTexCoord(a, b, c, d, e, f, g, h)
+	self.Icon:SetTexCoord(a, b, c, d, e, f, g, h)
 end
 
 function prototype:SetIconVertexColor(r, g, b)
-	if r == 0.5 and g == 0.5 and b == 0.5 then return end -- Don't let OPie darken icons on cooldown.
-	self.iconr, self.icong, self.iconb = r, g, b
+	if r == 0.5 and g == 0.5 and b == 0.5 then return end -- don't darken icons on cooldown
+	self.icon_r, self.icon_g, self.icon_b = r, g, b
 	if self.ustate == STATE_USABLE then
-		self.icon:SetVertexColor(r, g, b)
+		self.Icon:SetVertexColor(r, g, b)
 	end
 end
 
@@ -45,51 +45,48 @@ function prototype:SetUsable(usable, usableCharge, cd, nomana, norange)
 	if state == self.ustate then return end
 	self.ustate = state
 	if state == STATE_NORANGE then
-		self.icon:SetVertexColor(0.8, 0.1, 0.1)
+		self.Icon:SetVertexColor(0.8, 0.1, 0.1)
 	elseif state == STATE_NOMANA then
-		self.icon:SetVertexColor(0.5, 0.5, 1)
+		self.Icon:SetVertexColor(0.5, 0.5, 1)
 	elseif state == STATE_UNUSABLE and not cd then -- don't black it out while on cooldown
-		self.icon:SetVertexColor(0.4, 0.4, 0.4)
+		self.Icon:SetVertexColor(0.4, 0.4, 0.4)
 	else
-		self.icon:SetVertexColor(self.iconr or 1, self.icong or 1, self.iconb or 1)
+		self.Icon:SetVertexColor(self.icon_r or 1, self.icon_g or 1, self.icon_b or 1)
 	end
 end
 
 function prototype:SetDominantColor(r, g, b)
-	self.border:SetShown(2.85 > (r + g + b)) -- don't override skin color if it's white
-	self.border:SetVertexColor(r, g, b)
-	self.border:SetAlpha(SPECIAL_COLOR_ALPHA)
-	for i = 1, #self.glowTextures do
-		self.glowTextures[i]:SetVertexColor(r, g, b)
+	self.Border:SetShown(2.85 > (r + g + b)) -- don't override skin color if it's white
+	self.Border:SetVertexColor(r, g, b)
+	self.Border:SetAlpha(SPECIAL_COLOR_ALPHA)
+	for i = 1, #self.GlowTextures do
+		self.GlowTextures[i]:SetVertexColor(r, g, b)
 	end
 end
 
-function prototype:SetOverlayIcon(texture, w, h, ...)
-	-- wat?
-	--[[
+function prototype:SetOverlayIcon(texture, w, h, ...) -- not entirely sure what this is for
 	if not texture then
-		self.overIcon:Hide()
+		self.OverlayIcon:Hide()
 	else
-		self.overIcon:Show()
-		self.overIcon:SetTexture(texture)
-		self.overIcon:SetSize(w, h)
+		self.OverlayIcon:SetTexture(texture)
+		self.OverlayIcon:SetSize(w, h)
 		if ... then
-			self.overIcon:SetTexCoord(...)
+			self.OverlayIcon:SetTexCoord(...)
 		end
+		self.OverlayIcon:Show()
 	end
-	]]
 end
 
 function prototype:SetCount(count)
-	self.count:SetText(count or "")
+	self.Count:SetText(count or "")
 end
 
 local displaySubs = {
 	["ALT%-"]      = "a",
 	["CTRL%-"]     = "c",
-	["SHIFT%-"]    = "s",
-	["BUTTON"]     = "m",
-	["MOUSEWHEEL"] = "w",
+	["SHIFT%-"]    = "s", -- fr, it: "m"
+	["BUTTON"]     = "m", -- fr: souris, it: mouse
+	["MOUSEWHEEL"] = "w", -- fr: molette, it: rotellina
 	["NUMPAD"]     = "n",
 	["PLUS"]       = "+",
 	["MINUS"]      = "-",
@@ -99,12 +96,12 @@ local displaySubs = {
 }
 function prototype:SetBinding(text)
 	if not text then
-		return self.hotkey:SetText("")
+		return self.HotKey:SetText("")
 	end
 	for k, v in pairs(displaySubs) do
 		text = gsub(text, k, v)
 	end
-	self.hotkey:SetText(text)
+	self.HotKey:SetText(text)
 end
 
 function prototype:SetCooldown(remain, duration, usable)
@@ -113,18 +110,18 @@ function prototype:SetCooldown(remain, duration, usable)
 		-- TODO: detect and show loss of control ?
 		if usable then
 			-- show recharge time
-			self.cooldown:SetDrawEdge(true)
-			self.cooldown:SetDrawSwipe(false)
+			self.Cooldown:SetDrawEdge(true)
+			self.Cooldown:SetDrawSwipe(false)
 		else
 			-- show cooldown time
-			self.cooldown:SetDrawEdge(false)
-			self.cooldown:SetDrawSwipe(true)
-			self.cooldown:SetSwipeColor(0, 0, 0, 0.8)
+			self.Cooldown:SetDrawEdge(false)
+			self.Cooldown:SetDrawSwipe(true)
+			self.Cooldown:SetSwipeColor(0, 0, 0, 0.8)
 		end
-		self.cooldown:SetCooldown(start, duration)
-		self.cooldown:Show()
+		self.Cooldown:SetCooldown(start, duration)
+		self.Cooldown:Show()
 	else
-		self.cooldown:Hide()
+		self.Cooldown:Hide()
 	end
 end
 
@@ -145,28 +142,31 @@ function prototype:SetActive(active)
 end
 
 function prototype:SetOuterGlow(shown)
-	for i = 1, #self.glowTextures do
-		self.glowTextures[i]:SetShown(shown)
+--	if shown then
+--		print("GLOW!", self.Icon:GetTexture()) -- IS THIS EVEN USED?
+--	end
+	for i = 1, #self.GlowTextures do
+		self.GlowTextures[i]:SetShown(shown)
 	end
 end
 
 function prototype:SetEquipState(inBags, isEquipped)
 	if isEquipped then
-		self.flash:SetVertexColor(0.1, 0.9, 0.15)
-		self.flash:Show()
+		self.Flash:SetVertexColor(0.1, 0.9, 0.15)
+		self.Flash:Show()
 	elseif inBags then
-		self.flash:SetVertexColor(1, 0.9, 0.2)
-		self.flash:Show()
+		self.Flash:SetVertexColor(1, 0.9, 0.2)
+		self.Flash:Show()
 	else
-		self.flash:Hide()
+		self.Flash:Hide()
 	end
 end
 
 local function Reskin()
 	for _, button in pairs(buttons) do
-		local r, g, b = button.glowTextures[1]:GetVertexColor()
-		local _, _, _, a = button.border:GetVertexColor()
-		button.border:SetVertexColor(r, g, b, a)
+		local r, g, b = button.GlowTextures[1]:GetVertexColor()
+		local _, _, _, a = button.Border:GetVertexColor()
+		button.Border:SetVertexColor(r, g, b, a)
 	end
 end
 
@@ -182,35 +182,35 @@ local function CreateIndicator(name, parent, size, ghost)
 	button:SetSize(size, size)
 	button:EnableMouse(false)
 
-	button.border        = _G[name .. "Border"] -- highlight
-	button.cooldown      = _G[name .. "Cooldown"]
-	button.count         = _G[name .. "Count"]
-	button.flash         = _G[name .. "Flash"] -- inner glow / checked
-	button.hotkey        = _G[name .. "HotKey"]
-	button.icon          = _G[name .. "Icon"]
-	button.normalTexture = _G[name .. "NormalTexture"] -- border
+	button.Border        = _G[name .. "Border"] -- highlight
+	button.Cooldown      = _G[name .. "Cooldown"]
+	button.Count         = _G[name .. "Count"]
+	button.Flash         = _G[name .. "Flash"] -- inner glow / checked
+	button.HotKey        = _G[name .. "HotKey"]
+	button.Icon          = _G[name .. "Icon"]
+	button.NormalTexture = _G[name .. "NormalTexture"] -- border
 
-	-- Outer glow
-	button.glowTextures = {}
+	-- Overlay icon (???)
+	button.OverlayIcon = button:CreateTexture(nil, "ARTWORK", 1)
+	button.OverlayIcon:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 4, 4)
+
+	-- Outer glow (doesn't seem to do anything?)
+	button.GlowTextures = {}
 	for i = 1, 4 do
 		local glow = button:CreateTexture(nil, "BACKGROUND", nil, -8)
 		glow:SetSize(size, size)
 		glow:SetTexture("Interface\\AddOns\\OPie\\gfx\\oglow")
 		glow:Hide()
-		button.glowTextures[i] = glow
+		button.GlowTextures[i] = glow
 	end
-	button.glowTextures[1]:SetPoint("CENTER", button, "TOPLEFT")
-	button.glowTextures[1]:SetTexCoord(0, 1, 0, 1)
-	button.glowTextures[2]:SetPoint("CENTER", button, "TOPRIGHT")
-	button.glowTextures[2]:SetTexCoord(1, 0, 0, 1)
-	button.glowTextures[3]:SetPoint("CENTER", button, "BOTTOMRIGHT")
-	button.glowTextures[3]:SetTexCoord(1, 0, 1, 0)
-	button.glowTextures[4]:SetPoint("CENTER", button, "BOTTOMLEFT")
-	button.glowTextures[4]:SetTexCoord(0, 1, 1, 0)
-
-	--[[ Overlay icon (???)
-	button.overIcon = button:CreateTexture(nil, "ARTWORK", 1)
-	button.overIcon:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 4, 4)]]
+	button.GlowTextures[1]:SetPoint("CENTER", button, "TOPLEFT")
+	button.GlowTextures[1]:SetTexCoord(0, 1, 0, 1)
+	button.GlowTextures[2]:SetPoint("CENTER", button, "TOPRIGHT")
+	button.GlowTextures[2]:SetTexCoord(1, 0, 0, 1)
+	button.GlowTextures[3]:SetPoint("CENTER", button, "BOTTOMRIGHT")
+	button.GlowTextures[3]:SetTexCoord(1, 0, 1, 0)
+	button.GlowTextures[4]:SetPoint("CENTER", button, "BOTTOMLEFT")
+	button.GlowTextures[4]:SetTexCoord(0, 1, 1, 0)
 
 	for k, v in pairs(prototype) do
 		button[k] = v
