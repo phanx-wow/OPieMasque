@@ -13,6 +13,8 @@
 ## X-Email: addons@phanx.net
 ## X-Copyright: Copyright (c) 2013-2016 Phanx. All rights reserved.
 ## X-Website: https://github.com/Phanx/OPieMasque
+## X-Curse-Project-ID: opie-masque
+## X-WoWI-ID: 22226
 
 ## Dependencies: Masque, OPie
 

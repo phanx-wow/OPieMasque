@@ -7,5 +7,5 @@ OPie Masque
 **FR** — Accorde à Masque à modifier l'apparence du OPie.  
 **PT** — Capacita a Masque a alterar a aparência de Opie.
 
-* [Download on Curse](http://www.curse.com/addons/wow/opie-masque/)
-* [Download on WoWInterface](http://www.wowinterface.com/downloads/info22226-OPieMasque.html)
+* [Download on Curse](http://mods.curse.com/addons/wow/opie-masque/)
+* [Download on WoWInterface](https://www.wowinterface.com/downloads/info22226-OPieMasque.html)
