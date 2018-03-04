@@ -1,4 +1,4 @@
-## Interface: 70100
+## Interface: 70300
 ## Version: @project-version@
 
 ## Title: OPie Masque
@@ -11,9 +11,9 @@
 
 ## Author: Phanx
 ## X-Email: addons@phanx.net
-## X-Copyright: Copyright (c) 2013-2016 Phanx. All rights reserved.
+## X-License: All rights reserved
 ## X-Website: https://github.com/Phanx/OPieMasque
-## X-Curse-Project-ID: opie-masque
+## X-Curse-Project-ID: 55239
 ## X-WoWI-ID: 22226
 
 ## Dependencies: Masque, OPie
